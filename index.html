@@ -91,16 +91,40 @@ h2 { font-family: 'Cinzel'; font-weight: 700; text-align: center; color: var(--g
      font-size: clamp(28px, 5vw, 42px); letter-spacing: 4px; text-transform: uppercase; }
 .lead { text-align: center; color: var(--muted); margin: 8px auto 30px; max-width: 680px; }
 
-/* image gallery (menu + posters) */
+/* menu – text panels in the style of the printed wall menus */
+.menu-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: -8px 0 28px; }
+.menu-nav a { border: 1px solid var(--gold-d); border-radius: 999px; padding: 7px 16px; font-size: 15px; letter-spacing: 1px;
+              text-transform: uppercase; text-decoration: none; color: var(--gold-l); background: var(--bg2); }
+.menu-nav a:hover { border-color: var(--gold-l); }
+.mpanel { border: 2px solid var(--gold-d); outline: 1px solid rgba(221,178,87,.35); outline-offset: -9px; border-radius: 6px;
+          padding: 28px 32px 32px; background: radial-gradient(ellipse at 15% 0%, #2a2012 0%, #120e09 65%); scroll-margin-top: 70px; }
+.mpanel + .mpanel { margin-top: 24px; }
+.mhead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px;
+         padding-bottom: 14px; margin-bottom: 22px; border-bottom: 2px solid var(--gold-d); }
+.mhead h3 { font-family: 'Cinzel'; font-weight: 900; font-size: clamp(26px, 4.4vw, 40px); letter-spacing: 2px; line-height: 1.1;
+            background: var(--goldgrad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mhead .note { font-family: 'Playfair Display'; font-style: italic; color: var(--muted); font-size: 17px; }
+.sizes { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill { display: inline-flex; align-items: baseline; gap: 6px; background: var(--goldgrad); color: #1a1208; border-radius: 6px;
+        padding: 4px 12px; font-family: 'Playfair Display'; font-weight: 700; font-size: 20px; line-height: 1.3; white-space: nowrap; }
+.pill small { font-family: 'Josefin Sans'; font-weight: 600; font-size: 14px; }
+.mlist { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr)); gap: 20px 36px; }
+.mlist li { display: grid; grid-template-columns: 2.4em 1fr; align-items: baseline; align-content: start; }
+.mlist .no { font-family: 'Playfair Display'; font-style: italic; font-weight: 700; color: var(--gold); font-size: 18px; }
+.mlist .row { display: flex; align-items: baseline; gap: 10px; }
+.mlist .nm { font-family: 'Playfair Display'; font-weight: 700; font-size: 21px; line-height: 1.2; color: var(--ink); }
+.mlist .dots { flex: 1; min-width: 14px; border-bottom: 2px dotted var(--gold-d); }
+.mlist .pill { font-size: 18px; padding: 1px 10px; }
+.mlist .ds { grid-column: 2; color: var(--muted); font-size: 16px; line-height: 1.4; margin-top: 3px; }
+.msub { font-family: 'Cinzel'; font-weight: 700; color: var(--gold); letter-spacing: 3px; font-size: 22px;
+        margin: 30px 0 16px; padding-top: 18px; border-top: 1px solid rgba(221,178,87,.35); }
+
+/* image gallery (posters) */
 .gallery { display: grid; gap: 20px; }
 .gallery a { display: block; border: 2px solid var(--gold-d); border-radius: 12px; overflow: hidden; background: #000;
              transition: transform .15s ease, border-color .15s ease; }
 .gallery a:hover { transform: translateY(-2px); border-color: var(--gold-l); }
-.menu-grid { grid-template-columns: 1fr 1fr; }
-.menu-grid a.wide { grid-column: 1 / -1; }
-.menu-grid a.tall { grid-column: 1 / -1; justify-self: center; width: min(480px, 100%); }
 .akce-grid { grid-template-columns: 1.75fr 1fr; align-items: start; }
-.hint { text-align: center; color: var(--muted); font-size: 15px; margin-top: 14px; }
 
 /* amenities */
 .amen { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 4px; }
@@ -131,17 +155,15 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 
 @media (max-width: 820px) {
   .top nav { display: none; }
-  .menu-grid, .akce-grid, .contact { grid-template-columns: 1fr; }
+  .akce-grid, .contact { grid-template-columns: 1fr; }
+  .mpanel { padding: 20px 16px 22px; outline-offset: -6px; }
+  .mlist { gap: 16px; }
+  .mhead { margin-bottom: 18px; }
   .callbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; gap: 10px; padding: 10px 16px;
              background: rgba(13,11,8,.95); border-top: 1px solid var(--gold-d); }
   .callbar .btn { flex: 1; justify-content: center; padding: 12px 8px; font-size: 16px; }
   footer { padding-bottom: 100px; }
   .hero .sub { letter-spacing: 3px; }
-  /* landscape menu panels: larger, swipe sideways to read */
-  .menu-grid a:not(.tall) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .menu-grid a:not(.tall) img { width: 210%; max-width: none; }
-  .menu-grid a.wide img { width: 320%; }
-  .hint::before { content: "Posuňte obrázek do strany · "; }
 }
 </style>
 
@@ -205,18 +227,118 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
     </div>
   </div>
 
-  <!-- MENU: obrázky ve složce "obrazky". Pro aktualizaci nahrajte nový obrázek se STEJNÝM názvem souboru. -->
+  <!-- MENU: text. Název = <b class="nm">, složení = <p class="ds">, cena = <span class="pill">.
+       Pro úpravu stačí přepsat text (tužka ✏️ → Commit changes). Ceny pizzy jsou v hlavičce sekce. -->
   <section id="menu">
     <div class="wrap">
       <h2>Menu</h2>
       <p class="lead">Pizza 34 cm a 40 cm · burgery · köfte &amp; extra · přílohy · italské panini</p>
-      <div class="gallery menu-grid">
-        <a href="obrazky/menu-1-pizza-classic.jpg"><img src="obrazky/menu-1-pizza-classic.jpg" alt="Menu – Pizza Classic" width="1800" height="1000" loading="lazy"></a>
-        <a href="obrazky/menu-2-pizza-premium.jpg"><img src="obrazky/menu-2-pizza-premium.jpg" alt="Menu – Pizza Premium" width="1886" height="1000" loading="lazy"></a>
-        <a class="wide" href="obrazky/menu-3-burgery-kofte.jpg"><img src="obrazky/menu-3-burgery-kofte.jpg" alt="Menu – Burgery, Köfte &amp; Extra, Přílohy" width="2590" height="1000" loading="lazy"></a>
-        <a class="tall" href="obrazky/menu-4-panini.jpg"><img src="obrazky/menu-4-panini.jpg" alt="Menu – Italské panini" width="1100" height="1768" loading="lazy"></a>
+      <nav class="menu-nav" aria-label="Části menu">
+        <a href="#pizza-classic">Pizza Classic</a><a href="#pizza-premium">Pizza Premium</a><a href="#burgery">Burgery</a><a href="#kofte">Köfte &amp; Extra</a><a href="#panini">Panini</a>
+      </nav>
+
+      <div class="mpanel" id="pizza-classic">
+        <div class="mhead">
+          <h3>Pizza Classic</h3>
+          <div class="sizes"><span class="pill"><small>ø 34 cm</small> 230 Kč</span><span class="pill"><small>ø 40 cm</small> 250 Kč</span></div>
+        </div>
+        <ul class="mlist">
+          <li><span class="no">1.</span><b class="nm">Margherita</b><p class="ds">bazalka</p></li>
+          <li><span class="no">2.</span><b class="nm">Šunková</b><p class="ds">dušená šunka</p></li>
+          <li><span class="no">3.</span><b class="nm">Salámová</b><p class="ds">peperoni salám</p></li>
+          <li><span class="no">4.</span><b class="nm">Žampionová</b><p class="ds">žampiony</p></li>
+          <li><span class="no">5.</span><b class="nm">Olivová</b><p class="ds">zelené olivy</p></li>
+          <li><span class="no">6.</span><b class="nm">Veggie</b><p class="ds">špenát, sezónní zelenina</p></li>
+          <li><span class="no">7.</span><b class="nm">Corny</b><p class="ds">dušená šunka, kukuřice, sýr hermelín</p></li>
+          <li><span class="no">8.</span><b class="nm">Slaninová</b><p class="ds">anglická slanina, červená cibule</p></li>
+          <li><span class="no">9.</span><b class="nm">Klobásová</b><p class="ds">klobása, červená cibule</p></li>
+          <li><span class="no">10.</span><b class="nm">Hawai</b><p class="ds">dušená šunka, ananas</p></li>
+          <li><span class="no">11.</span><b class="nm">Prosciutto e Funghi</b><p class="ds">dušená šunka, žampiony</p></li>
+          <li><span class="no">12.</span><b class="nm">Tuňáková</b><p class="ds">tuňák, červená cibule</p></li>
+        </ul>
       </div>
-      <p class="hint">Klepnutím na obrázek ho zvětšíte.</p>
+
+      <div class="mpanel" id="pizza-premium">
+        <div class="mhead">
+          <h3>Pizza Premium</h3>
+          <div class="sizes"><span class="pill"><small>ø 34 cm</small> 260 Kč</span><span class="pill"><small>ø 40 cm</small> 280 Kč</span></div>
+        </div>
+        <ul class="mlist">
+          <li><span class="no">13.</span><b class="nm">Capricciosa</b><p class="ds">peperoni salám, dušená šunka, žampiony, beraní rohy</p></li>
+          <li><span class="no">14.</span><b class="nm">Calabria</b><p class="ds">anglická slanina, sázené vejce, beraní rohy</p></li>
+          <li><span class="no">15.</span><b class="nm">Don Pepé</b><p class="ds">dušená šunka, sýr hermelín, olivy</p></li>
+          <li><span class="no">16.</span><b class="nm">Peja</b><p class="ds">parmská šunka, sušená rajčata</p></li>
+          <li><span class="no">17.</span><b class="nm">Mississippi</b><p class="ds">dušená šunka, anglická slanina, Mississippi omáčka</p></li>
+          <li><span class="no">18.</span><b class="nm">Quattro Formaggi</b><p class="ds">sýr s modrou plísní, sýr cheddar, parmezán</p></li>
+          <li><span class="no">19.</span><b class="nm">Quattro Stagioni</b><p class="ds">¼ šunka, ¼ salám, ¼ žampiony, ¼ špenát</p></li>
+          <li><span class="no">20.</span><b class="nm">Prosciutto Crudo</b><p class="ds">parmská šunka, parmezán</p></li>
+          <li><span class="no">21.</span><b class="nm">Picante</b><p class="ds">peperoni salám, paprika, červená cibule, jalapeños</p></li>
+          <li><span class="no">22.</span><b class="nm">Orient</b><p class="ds">peperoni salám, slanina, klobása, červená cibule, beraní rohy</p></li>
+          <li><span class="no">23.</span><b class="nm">Texas</b><p class="ds">kukuřice, klobása, beraní rohy, červená cibule</p></li>
+          <li><span class="no">24.</span><b class="nm">Brusinková</b><p class="ds">dušená šunka, hermelín, bílá omáčka, brusinky</p></li>
+          <li><span class="no">25.</span><b class="nm">BBQ Bacon</b><p class="ds">anglická slanina, červená cibule, BBQ omáčka</p></li>
+          <li><span class="no">26.</span><b class="nm">Al Broccoli</b><p class="ds">dušená šunka, kukuřice, anglická slanina, brokolice</p></li>
+          <li><span class="no">27.</span><b class="nm">Mexicana Deluxe</b><p class="ds">peperoni salám, klobása, vejce, červená cibule, jalapeños</p></li>
+        </ul>
+      </div>
+
+      <div class="mpanel" id="burgery">
+        <div class="mhead">
+          <h3>Burgery</h3>
+          <p class="note">Všechny burgery podáváme ve zlatavé briošce</p>
+        </div>
+        <ul class="mlist">
+          <li><span class="no">28.</span><div class="row"><b class="nm">Orient King</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">hovězí Chuck Roll 140 g, ledový salát, opečená slanina, bramborová placka, sýr čedar, sušená rajčata, belgická omáčka</p></li>
+          <li><span class="no">29.</span><div class="row"><b class="nm">Mississippi Burger</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">hovězí Chuck Roll 140 g, ledový salát, opečená slanina, vejce, sýr čedar, nakládaná okurka, rajče, čerstvá cibule, Mississippi omáčka</p></li>
+          <li><span class="no">30.</span><div class="row"><b class="nm">Royal Burger</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">hovězí Chuck Roll 140 g, ledový salát, čerstvá cibule, nakládaná okurka, rajče, sýr hermelín, sýr čedar, kečup-majonéza</p></li>
+          <li><span class="no">31.</span><div class="row"><b class="nm">BBQ Burger</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">hovězí Chuck Roll 140 g, ledový salát, sýr čedar, čerstvá cibule, rajče, opečená slanina, nakládaná okurka, BBQ omáčka</p></li>
+          <li><span class="no">32.</span><div class="row"><b class="nm">Chicken Burger</b><i class="dots"></i><span class="pill">180 Kč</span></div><p class="ds">grilované kuřecí prso 140 g, ledový salát, sýr čedar, rajčata, majonéza</p></li>
+          <li><span class="no">33.</span><div class="row"><b class="nm">Crispy Chicken Deluxe</b><i class="dots"></i><span class="pill">180 Kč</span></div><p class="ds">kuřecí stripsy, ledový salát, sýr čedar, opečená slanina, rajčata, červená cibule, majonéza</p></li>
+          <li><span class="no">34.</span><div class="row"><b class="nm">Orient Burger</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">hovězí Chuck Roll 140 g, sýr čedar, čerstvý salát, rajčata, zlatavé cibulové kroužky, BBQ omáčka</p></li>
+          <li><span class="no">35.</span><div class="row"><b class="nm">Veggie Burger</b><i class="dots"></i><span class="pill">180 Kč</span></div><p class="ds">křupavý zeleninový karbanátek, ledový salát, rajčata, sýr čedar, bramborová placka, Mississippi omáčka</p></li>
+          <li><span class="no">36.</span><div class="row"><b class="nm">Cheezy Crunch Chicken</b><i class="dots"></i><span class="pill">180 Kč</span></div><p class="ds">smažený čedar a kuřecí stripsy, ledový salát, rajče, sýr čedar, brusinková omáčka</p></li>
+        </ul>
+      </div>
+
+      <div class="mpanel" id="kofte">
+        <div class="mhead">
+          <h3>Köfte &amp; Extra</h3>
+        </div>
+        <ul class="mlist">
+          <li><span class="no">37.</span><div class="row"><b class="nm">Stripsy s hranolky</b><i class="dots"></i><span class="pill">230 Kč</span></div><p class="ds">salát, 3 ks stripsů, 200 g hranolek</p></li>
+          <li><span class="no">38.</span><div class="row"><b class="nm">Salát se stripsy</b><i class="dots"></i><span class="pill">200 Kč</span></div><p class="ds">salát, 3 ks stripsů</p></li>
+          <li><span class="no">39.</span><div class="row"><b class="nm">Gril köfte salát</b><i class="dots"></i><span class="pill">220 Kč</span></div><p class="ds">150 g hovězího masa, salát</p></li>
+          <li><span class="no">40.</span><div class="row"><b class="nm">Gril köfte s hranolky</b><i class="dots"></i><span class="pill">249 Kč</span></div><p class="ds">150 g hovězího masa, salát, hranolky</p></li>
+          <li><span class="no">41.</span><div class="row"><b class="nm">Gril köfte s chlebem</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">150 g hovězího masa, salát</p></li>
+          <li><span class="no">42.</span><div class="row"><b class="nm">Gril köfte s chlebem a sýrem</b><i class="dots"></i><span class="pill">200 Kč</span></div><p class="ds">150 g hovězího masa, salát, balkánský sýr</p></li>
+          <li><span class="no">43.</span><div class="row"><b class="nm">Gril chicken salát</b><i class="dots"></i><span class="pill">200 Kč</span></div><p class="ds">150 g kuřecího masa, salát</p></li>
+          <li><span class="no">44.</span><div class="row"><b class="nm">Gril chicken salát s hranolky</b><i class="dots"></i><span class="pill">230 Kč</span></div><p class="ds">150 g kuřecího masa, salát, hranolky</p></li>
+          <li><span class="no">45.</span><div class="row"><b class="nm">Veggie salát</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">ledový salát, rajčata, mix salát, veggie placka</p></li>
+          <li><span class="no">46.</span><div class="row"><b class="nm">Salát s olivami</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">ledový salát, rajčata, mix salát, balkánský sýr, olivy</p></li>
+          <li><span class="no">47.</span><div class="row"><b class="nm">Gril köfte v tortille</b><i class="dots"></i><span class="pill">190 Kč</span></div><p class="ds">hovězí maso, ledový salát, rajčata, mix salát, dresink</p></li>
+          <li><span class="no">48.</span><div class="row"><b class="nm">Gril köfte v tortille se sýrem</b><i class="dots"></i><span class="pill">200 Kč</span></div><p class="ds">hovězí maso, ledový salát, rajčata, mix salát, dresink, balkánský sýr</p></li>
+          <li><span class="no">49.</span><div class="row"><b class="nm">Crispy chicken tortilla</b><i class="dots"></i><span class="pill">180 Kč</span></div><p class="ds">kuřecí stripsy, ledový salát, rajčata, mix salát, dresink</p></li>
+        </ul>
+        <h4 class="msub">Přílohy</h4>
+        <ul class="mlist">
+          <li><span class="no">50.</span><div class="row"><b class="nm">Hranolky</b><i class="dots"></i><span class="pill">80 Kč</span></div></li>
+          <li><span class="no">51.</span><div class="row"><b class="nm">Krokety</b><i class="dots"></i><span class="pill">80 Kč</span></div></li>
+          <li><span class="no">52.</span><div class="row"><b class="nm">Stripsy</b><i class="dots"></i><span class="pill">90 Kč</span></div></li>
+        </ul>
+      </div>
+
+      <div class="mpanel" id="panini">
+        <div class="mhead">
+          <h3>Italské panini</h3>
+        </div>
+        <ul class="mlist">
+          <li><span class="no">1.</span><div class="row"><b class="nm">Panini šunkové</b><i class="dots"></i><span class="pill">99 Kč</span></div><p class="ds">sýr gouda nebo čedar, šunka, kečup, ledový salát, rajče, okurka, cibule</p></li>
+          <li><span class="no">2.</span><div class="row"><b class="nm">Panini salámové</b><i class="dots"></i><span class="pill">99 Kč</span></div><p class="ds">sýr gouda nebo čedar, salám, kečup, ledový salát, rajče, okurka, cibule</p></li>
+          <li><span class="no">3.</span><div class="row"><b class="nm">Panini s omeletou</b><i class="dots"></i><span class="pill">119 Kč</span></div><p class="ds">sýr gouda nebo čedar, omeleta, kečup, ledový salát, rajče, okurka, cibule</p></li>
+          <li><span class="no">4.</span><div class="row"><b class="nm">Panini slaninové</b><i class="dots"></i><span class="pill">119 Kč</span></div><p class="ds">sýr gouda nebo čedar, slanina, kečup, ledový salát, rajče, okurka, cibule</p></li>
+          <li><span class="no">5.</span><div class="row"><b class="nm">Panini Mix</b><i class="dots"></i><span class="pill">139 Kč</span></div><p class="ds">sýr gouda nebo čedar, salám, šunka, ledový salát, rajče, okurka, cibule</p></li>
+        </ul>
+      </div>
     </div>
   </section>
 
