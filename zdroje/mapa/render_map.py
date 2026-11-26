@@ -1,4 +1,4 @@
-# Regenerates obrazky/mapa-arealu-fnhk.png.
+# Regenerates obrazky/mapa-arealu-fnhk.png (full size) and obrazky/mapa-arealu-fnhk-1200.png (page copy).
 # Run from this folder:  pdftocairo -svg mapa-fnhk-original.pdf mapa.svg  (once)
 #                        python3 render_map.py
 # Needs: playwright (chromium), Pillow, fonts Cinzel[wght].ttf + Arimo[wght].ttf in ./fonts (or FONTS_DIR).
@@ -25,5 +25,8 @@ if not os.path.exists("mapa.svg"):
     subprocess.run(["pdftocairo", "-svg", "mapa-fnhk-original.pdf", "mapa.svg"], check=True)
 subprocess.run([sys.executable, "overlay.py"], check=True)
 asyncio.run(shot("mapa_oe.png"))
-q(Image.open("mapa_oe.png").convert("RGB")).save(f"{OUT}/mapa-arealu-fnhk.png", optimize=True)
+full = Image.open("mapa_oe.png").convert("RGB")
+q(full).save(f"{OUT}/mapa-arealu-fnhk.png", optimize=True)                     # opened on tap (zoom)
+small = full.resize((1200, round(full.height * 1200 / full.width)), Image.LANCZOS)
+q(small).save(f"{OUT}/mapa-arealu-fnhk-1200.png", optimize=True)              # shown on the page (less memory on phones)
 print("hotovo:", OUT)

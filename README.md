@@ -25,7 +25,8 @@ Doporučení: JPG, šířka 1500–2600 px, velikost do ~500 kB.
 |---|---|
 | akce-1-kofte-pizza.jpg | Köfte v chlebu / Bowl / Pizza |
 | akce-3-coca-cola.jpg | Akce Coca-Cola zdarma |
-| mapa-arealu-fnhk.png | Plán areálu FN HK s vyznačeným Orient Express Pizza |
+| mapa-arealu-fnhk.png | Plán areálu FN HK s vyznačeným Orient Express Pizza (plná velikost, otevře se po klepnutí) |
+| mapa-arealu-fnhk-1200.png | Totéž zmenšené na šířku 1200 px – zobrazuje se na stránce (při výměně plánu nahraďte oba) |
 | nahled-sdileni.jpg | Náhled při sdílení odkazu (1200×630) |
 
 ## Telefon, adresa, otevírací doba
