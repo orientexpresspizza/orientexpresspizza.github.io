@@ -1,4 +1,4 @@
-# Regenerates obrazky/mapa-arealu-fnhk.png (with DETAIL frame) and obrazky/mapa-detail.png.
+# Regenerates obrazky/mapa-arealu-fnhk.png.
 # Run from this folder:  pdftocairo -svg mapa-fnhk-original.pdf mapa.svg  (once)
 #                        python3 render_map.py
 # Needs: playwright (chromium), Pillow, fonts Cinzel[wght].ttf + Arimo[wght].ttf in ./fonts (or FONTS_DIR).
@@ -7,7 +7,6 @@ from playwright.async_api import async_playwright
 from PIL import Image
 
 K = 2400 / 592                       # px per PDF point
-DETAIL = (150, 59, 560, 223.5)        # detail crop in PDF points – keep in sync with DZ in overlay.py
 OUT = os.path.abspath("../../obrazky")
 
 async def shot(path):
@@ -24,12 +23,7 @@ def q(im):
 
 if not os.path.exists("mapa.svg"):
     subprocess.run(["pdftocairo", "-svg", "mapa-fnhk-original.pdf", "mapa.svg"], check=True)
-for frame in ("0", "1"):
-    subprocess.run([sys.executable, "overlay.py"], check=True, env={**os.environ, "FRAME": frame})
-    asyncio.run(shot(f"mapa_oe_{frame}.png"))
-plain = Image.open("mapa_oe_0.png").convert("RGB")
-framed = Image.open("mapa_oe_1.png").convert("RGB")
-q(framed).save(f"{OUT}/mapa-arealu-fnhk.png", optimize=True)
-x0, y0, x1, y1 = DETAIL
-q(plain.crop((round(x0*K), round(y0*K), round(x1*K), round(y1*K)))).save(f"{OUT}/mapa-detail.png", optimize=True)
+subprocess.run([sys.executable, "overlay.py"], check=True)
+asyncio.run(shot("mapa_oe.png"))
+q(Image.open("mapa_oe.png").convert("RGB")).save(f"{OUT}/mapa-arealu-fnhk.png", optimize=True)
 print("hotovo:", OUT)

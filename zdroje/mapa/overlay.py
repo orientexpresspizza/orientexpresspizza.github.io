@@ -43,22 +43,7 @@ label = f'''
   <text x="{x0+w/2}" y="{y0+32}" text-anchor="middle" font-family="Cinzel" font-weight="700" font-size="9.8"
         letter-spacing="3.6" fill="#f5e9cc">PIZZA</text>
 </g>'''
-import os
-# optional gold frame marking the zoomed-in area (DZ = detail zone, in PDF points)
-DZ = (150, 59, 560, 223.5)
-TABX = 296          # DETAIL tab position on the frame's top edge (empty spot)
-frame = ""
-if os.environ.get("FRAME") == "1":
-    fx0, fy0, fx1, fy1 = DZ
-    frame = f'''
-<g id="detail-frame">
-  <rect x="{fx0}" y="{fy0}" width="{fx1-fx0}" height="{fy1-fy0}" fill="none" stroke="#0d0b08" stroke-width="4.2"/>
-  <rect x="{fx0}" y="{fy0}" width="{fx1-fx0}" height="{fy1-fy0}" fill="none" stroke="url(#oeGold)" stroke-width="2.4"/>
-  <rect x="{TABX}" y="{fy0-15}" width="58" height="15" rx="2" fill="#0d0b08"/>
-  <text x="{TABX+29}" y="{fy0-4}" text-anchor="middle" font-family="Cinzel" font-weight="900" font-size="9.5"
-        letter-spacing="1.5" fill="url(#oeGold)">DETAIL</text>
-</g>'''
-svg = svg.replace("</svg>", label + frame + "\n</svg>")
+svg = svg.replace("</svg>", label + "\n</svg>")
 open("./mapa_oe.svg", "w", encoding="utf-8").write(svg)
 html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face {{ font-family: 'Cinzel'; src: url('file://{F}/Cinzel[wght].ttf'); font-weight: 400 900; }}

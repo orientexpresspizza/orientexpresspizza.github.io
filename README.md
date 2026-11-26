@@ -19,8 +19,7 @@ Doporučení: JPG, šířka 1500–2600 px, velikost do ~500 kB.
 | menu-4-panini.jpg | Italské panini |
 | akce-1-kofte-pizza.jpg | Köfte v chlebu / Bowl / Pizza |
 | akce-3-coca-cola.jpg | Akce Coca-Cola zdarma |
-| mapa-arealu-fnhk.png | Plán areálu FN HK s vyznačeným Orient Express Pizza a rámečkem DETAIL |
-| mapa-detail.png | Výřez plánu (oblast zlatého rámečku DETAIL) |
+| mapa-arealu-fnhk.png | Plán areálu FN HK s vyznačeným Orient Express Pizza |
 | nahled-sdileni.jpg | Náhled při sdílení odkazu (1200×630) |
 
 ## Telefon, adresa, otevírací doba
