@@ -38,9 +38,10 @@ zapsán jako `+420724252217`, otevírací doba jako `06:00`/`18:00`. Při změn�
 ## Soubor CNAME
 Obsahuje doménu `orientexpresspizza.eu`. Nemažte ho.
 
-## Ověření pro Google a Seznam – nemazat
+## Ověření pro Google, Seznam a Bing – nemazat
 - soubor `googlefeee2772b0309337.html` – ověření webu v Google Search Console,
 - řádek `<meta name="seznam-wmt" …>` v hlavičce `index.html` – ověření v Seznam Webmaster.
+- řádek `<meta name="msvalidate.01" …>` v hlavičce `index.html` – ověření v Bing Webmaster Tools.
 
 Když je smažete, přestanou fungovat statistiky vyhledávání. Po větší změně obsahu webu upravte datum
 v `sitemap.xml` (`<lastmod>`).
