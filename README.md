@@ -32,9 +32,18 @@ Doporučení: JPG, šířka 1500–2600 px, velikost do ~500 kB.
 ## Telefon, adresa, otevírací doba
 Jsou v souboru `index.html` – vyhledejte `724 252 217` (telefon je na několika místech), `Sokolská` a `Otevírací doba`
 (tužka ✏️ = upravit, pak **Commit changes**).
+Stejné údaje jsou ještě v bloku `application/ld+json` v horní části `index.html` (pro Google) – telefon je tam
+zapsán jako `+420724252217`, otevírací doba jako `06:00`/`18:00`. Při změně upravte i tam.
 
 ## Soubor CNAME
 Obsahuje doménu `orientexpresspizza.eu`. Nemažte ho.
+
+## Ověření pro Google a Seznam – nemazat
+- soubor `googlefeee2772b0309337.html` – ověření webu v Google Search Console,
+- řádek `<meta name="seznam-wmt" …>` v hlavičce `index.html` – ověření v Seznam Webmaster.
+
+Když je smažete, přestanou fungovat statistiky vyhledávání. Po větší změně obsahu webu upravte datum
+v `sitemap.xml` (`<lastmod>`).
 
 ## Upoutávka „Otevíráme 7. prosince“
 Po 7. 12. 2026 se sama skryje. Natrvalo ji odstraníte smazáním prvků s třídou `js-opening` v `index.html`.
