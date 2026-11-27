@@ -3,15 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orient Express Pizza – Hradec Králové | otevíráme 7. prosince</title>
-<meta name="description" content="Orient Express Pizza v areálu FN Hradec Králové, Sokolská 581. Pizza 34 a 40 cm, burgery, köfte, panini. Objednávky telefonem nebo přes WhatsApp: +420 724 252 217.">
-<meta property="og:title" content="Orient Express Pizza – otevíráme 7. prosince">
+<title>Orient Express Pizza Hradec Králové – pizza, burgery, köfte</title>
+<meta name="description" content="Nová pizzerie v areálu Fakultní nemocnice Hradec Králové (Sokolská 581). Pizza 34 a 40 cm, burgery, köfte a panini. Objednávky: +420 724 252 217, i přes WhatsApp.">
+<link rel="canonical" href="https://orientexpresspizza.eu/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="geo.region" content="CZ-52">
+<meta name="geo.placename" content="Hradec Králové">
+<meta name="geo.position" content="50.200503;15.827516">
+<meta name="ICBM" content="50.200503, 15.827516">
+<meta property="og:site_name" content="Orient Express Pizza">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Orient Express Pizza – pizzerie v areálu FN Hradec Králové">
 <meta property="og:description" content="Pizza, burgery, köfte a panini v areálu FN Hradec Králové. Objednávky: +420 724 252 217 (telefon i WhatsApp).">
-<meta property="og:image" content="https://orientexpresspizza.eu/obrazky/nahled-sdileni.jpg">
 <meta property="og:url" content="https://orientexpresspizza.eu/">
-<meta property="og:type" content="restaurant">
+<meta property="og:image" content="https://orientexpresspizza.eu/obrazky/nahled-sdileni.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Orient Express Pizza – pizza, burgery a köfte v Hradci Králové">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0d0b08">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
@@ -27,6 +40,7 @@ body { background: var(--bg); color: var(--ink); font-family: 'Josefin Sans', sy
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* opening teaser ribbon */
 .ribbon { background: var(--goldgrad); color: #1a1208; text-align: center; font-weight: 600;
@@ -171,15 +185,32 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": "https://orientexpresspizza.eu/#restaurant",
   "name": "Orient Express Pizza",
+  "description": "Pizzerie v areálu Fakultní nemocnice Hradec Králové – pizza 34 a 40 cm, burgery, köfte a italské panini. Objednávky telefonem nebo přes WhatsApp.",
   "url": "https://orientexpresspizza.eu/",
   "telephone": "+420724252217",
+  "image": ["https://orientexpresspizza.eu/obrazky/nahled-sdileni.jpg", "https://orientexpresspizza.eu/obrazky/akce-1-kofte-pizza.jpg"],
+  "logo": "https://orientexpresspizza.eu/apple-touch-icon.png",
   "servesCuisine": ["Pizza", "Burgery", "Köfte", "Panini"],
-  "address": { "@type": "PostalAddress", "streetAddress": "Sokolská 581", "addressLocality": "Hradec Králové – Nový Hradec Králové", "postalCode": "500 05", "addressCountry": "CZ" },
+  "foundingDate": "2026-12-07",
+  "priceRange": "99–280 Kč",
+  "currenciesAccepted": "CZK",
+  "acceptsReservations": false,
+  "hasMenu": "https://orientexpresspizza.eu/#menu",
+  "address": { "@type": "PostalAddress", "streetAddress": "Sokolská 581", "addressLocality": "Hradec Králové", "postalCode": "500 05", "addressRegion": "Královéhradecký kraj", "addressCountry": "CZ" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 50.200503, "longitude": 15.827516 },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=50.200503%2C15.827516",
+  "containedInPlace": { "@type": "Hospital", "name": "Fakultní nemocnice Hradec Králové", "address": "Sokolská 581, 500 05 Hradec Králové" },
+  "areaServed": { "@type": "City", "name": "Hradec Králové" },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Venkovní terasa", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Stolky uvnitř", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "WC", "value": true }
+  ],
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "06:00", "closes": "18:00" }
-  ],
-  "image": "https://orientexpresspizza.eu/obrazky/nahled-sdileni.jpg"
+  ]
 }
 </script>
 </head>
@@ -190,7 +221,7 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#">ORIENT EXPRESS</a>
+    <a class="brand" href="/">ORIENT EXPRESS</a>
     <nav><a href="#menu">Menu</a><a href="#akce">Akce</a><a href="#kontakt">Kontakt</a></nav>
   </div>
 </header>
@@ -198,10 +229,10 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 <main>
   <div class="hero">
     <div class="wrap">
-      <h1>ORIENT<br>EXPRESS</h1>
+      <h1>ORIENT<br>EXPRESS<span class="vh"> Pizza – pizzerie Hradec Králové</span></h1>
       <div class="divider"><i></i><b></b><i></i></div>
       <div class="sub">PIZZA · BURGER · KÖFTE</div>
-      <p class="where">Sokolská 581, Hradec Králové – v areálu Fakultní nemocnice</p>
+      <p class="where">Pizzerie v areálu Fakultní nemocnice Hradec Králové · Sokolská 581</p>
 
       <div class="opening js-opening">
         <div class="tag">Velké otevření</div>
@@ -347,8 +378,8 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
       <h2>Akce &amp; speciality</h2>
       <p class="lead">Köfte v chlebu, köfte bowl a Coca-Cola zdarma k větší objednávce</p>
       <div class="gallery akce-grid">
-        <a href="obrazky/akce-1-kofte-pizza.jpg"><img src="obrazky/akce-1-kofte-pizza.jpg" alt="Köfte v chlebu, Köfte Bowl, Pizza" width="1800" height="1247" loading="lazy"></a>
-        <a href="obrazky/akce-3-coca-cola.jpg"><img src="obrazky/akce-3-coca-cola.jpg" alt="Akce: 1 litr Coca-Coly zdarma" width="1100" height="1632" loading="lazy"></a>
+        <a href="obrazky/akce-1-kofte-pizza.jpg"><img src="obrazky/akce-1-kofte-pizza.jpg" alt="Orient Express Pizza Hradec Králové: köfte v chlebu, köfte bowl a pizza" width="1800" height="1247" loading="lazy"></a>
+        <a href="obrazky/akce-3-coca-cola.jpg"><img src="obrazky/akce-3-coca-cola.jpg" alt="Akce Orient Express Pizza: 1 litr Coca-Coly zdarma k větší objednávce" width="1100" height="1632" loading="lazy"></a>
       </div>
     </div>
   </section>

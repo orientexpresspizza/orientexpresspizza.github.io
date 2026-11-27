@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /zdroje/
+Disallow: /README.md
+
+Sitemap: https://orientexpresspizza.eu/sitemap.xml
