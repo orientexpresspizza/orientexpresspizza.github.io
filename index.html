@@ -4,8 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orient Express Pizza Hradec Králové – pizza, burgery, köfte</title>
-<meta name="description" content="Nová pizzerie v areálu Fakultní nemocnice Hradec Králové (Sokolská 581). Pizza 34 a 40 cm, burgery, köfte a panini. Objednávky: +420 724 252 217, i přes WhatsApp.">
+<meta name="description" content="Nová pizzerie v areálu Fakultní nemocnice Hradec Králové (Nemocnice 590). Pizza 34 a 40 cm, burgery, köfte a panini. Objednávky: +420 724 252 217, i přes WhatsApp.">
 <link rel="canonical" href="https://orientexpresspizza.eu/">
+<link rel="alternate" hreflang="cs" href="https://orientexpresspizza.eu/">
+<link rel="alternate" hreflang="ru" href="https://orientexpresspizza.eu/ru/">
+<link rel="alternate" hreflang="tr" href="https://orientexpresspizza.eu/tr/">
+<link rel="alternate" hreflang="x-default" href="https://orientexpresspizza.eu/">
 <meta name="seznam-wmt" content="cmpryEWS0HSNtZ3UxR7gjvCLXWxdG6Qg">
 <meta name="msvalidate.01" content="AB2D937D96D8576A8D7AC7914DD11A1C">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -35,10 +39,12 @@
   --bg: #0d0b08; --bg2: #17120b; --ink: #f5e9cc; --muted: #cdb98a;
   --gold: #ddb257; --gold-l: #f7e2a0; --gold-d: #b8883a; --red: #c8141b;
   --goldgrad: linear-gradient(180deg, #f7e2a0, #d9ac52 55%, #b8883a);
+  --ff-head: 'Cinzel', 'Playfair Display SC', serif; --ff-name: 'Playfair Display', serif;
+  --ff-body: 'Josefin Sans', 'Jost', system-ui, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font-family: 'Josefin Sans', system-ui, sans-serif; font-size: 18px; line-height: 1.5; }
+body { background: var(--bg); color: var(--ink); font-family: var(--ff-body); font-size: 18px; line-height: 1.5; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
@@ -47,17 +53,34 @@ a { color: inherit; }
 /* opening teaser ribbon */
 .ribbon { background: var(--goldgrad); color: #1a1208; text-align: center; font-weight: 600;
           padding: 9px 16px; font-size: 16px; letter-spacing: .5px; }
-.ribbon b { font-family: 'Cinzel'; font-weight: 900; letter-spacing: 1px; }
+.ribbon b { font-family: var(--ff-head); font-weight: 900; letter-spacing: 1px; }
 
 /* header */
 .top { position: sticky; top: 0; z-index: 10; background: rgba(13,11,8,.92); backdrop-filter: blur(6px);
        border-bottom: 1px solid rgba(221,178,87,.35); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; }
-.brand { font-family: 'Cinzel'; font-weight: 900; font-size: 20px; letter-spacing: 2px; text-decoration: none;
+.brand { font-family: var(--ff-head); font-weight: 900; font-size: 20px; letter-spacing: 2px; text-decoration: none;
          background: var(--goldgrad); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }
 .top nav { display: flex; gap: 18px; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; }
 .top nav a { text-decoration: none; color: var(--muted); }
 .top nav a:hover { color: var(--gold-l); }
+.tright { display: flex; align-items: center; gap: 18px; }
+
+/* language selector */
+.lang { position: relative; }
+.lang summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+                border: 1px solid var(--gold-d); border-radius: 999px; color: var(--gold-l); font-size: 15px; font-weight: 600; letter-spacing: 1px; }
+.lang summary::-webkit-details-marker { display: none; }
+.lang summary:hover, .lang[open] summary { border-color: var(--gold-l); }
+.lang summary svg { width: 18px; height: 18px; flex: none; }
+.lang summary::after { content: ''; border: 5px solid transparent; border-top-color: currentColor; margin: 5px 0 0 1px; }
+.lang ul { position: absolute; inset-inline-end: 0; top: calc(100% + 8px); z-index: 30; list-style: none; min-width: 170px; padding: 6px;
+           background: var(--bg2); border: 1px solid var(--gold-d); border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.55); }
+.lang li a { display: flex; justify-content: space-between; gap: 14px; padding: 8px 12px; border-radius: 8px;
+             text-decoration: none; color: var(--ink); font-size: 16px; }
+.lang li a small { color: var(--muted); font-size: 13px; letter-spacing: 1px; }
+.lang li a:hover { background: rgba(221,178,87,.12); color: var(--gold-l); }
+.lang li a[aria-current] { color: var(--gold); font-weight: 600; }
 
 /* buttons */
 .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 999px;
@@ -69,14 +92,14 @@ a { color: inherit; }
 /* hero */
 .hero { text-align: center; padding: 48px 0 56px;
         background: radial-gradient(ellipse at 50% 0%, #3a2b15 0%, var(--bg) 65%); }
-.hero h1 { font-family: 'Cinzel'; font-weight: 900; line-height: 1; letter-spacing: 3px;
+.hero h1 { font-family: var(--ff-head); font-weight: 900; line-height: 1; letter-spacing: 3px;
            font-size: clamp(44px, 11vw, 120px);
            background: linear-gradient(90deg, #b8883a, #f7e2a0 30%, #d9ac52 55%, #f3d68a 80%, #b8883a);
            -webkit-background-clip: text; background-clip: text; color: transparent; }
 .divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 22px auto 16px; width: min(520px, 80%); }
 .divider i { flex: 1; height: 2px; background: var(--gold-d); }
 .divider b { width: 14px; height: 14px; background: var(--gold); transform: rotate(45deg); }
-.hero .sub { font-family: 'Cinzel'; font-weight: 700; letter-spacing: 8px; color: var(--gold); font-size: clamp(16px, 3.4vw, 26px); }
+.hero .sub { font-family: var(--ff-head); font-weight: 700; letter-spacing: 8px; color: var(--gold); font-size: clamp(16px, 3.4vw, 26px); }
 .hero .where { color: var(--muted); margin-top: 10px; }
 
 /* opening teaser card */
@@ -86,16 +109,16 @@ a { color: inherit; }
 .opening .tag { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); white-space: nowrap;
                 background: var(--red); color: #fff; font-weight: 600; font-size: 15px; letter-spacing: 2px;
                 text-transform: uppercase; padding: 5px 16px; border-radius: 999px; }
-.opening .big { font-family: 'Cinzel'; font-weight: 900; color: var(--gold-l); line-height: 1.1;
+.opening .big { font-family: var(--ff-head); font-weight: 900; color: var(--gold-l); line-height: 1.1;
                 font-size: clamp(26px, 6vw, 44px); margin-top: 6px; }
-.opening .date { font-family: 'Playfair Display'; font-weight: 700; font-style: italic; color: var(--ink);
+.opening .date { font-family: var(--ff-name); font-weight: 700; font-style: italic; color: var(--ink);
                  font-size: clamp(22px, 4.6vw, 32px); margin-top: 4px; }
 .opening .count { margin-top: 10px; color: var(--muted); font-size: 17px; }
 .opening .count b { color: var(--gold-l); font-size: 22px; }
 @keyframes glow { 50% { box-shadow: 0 0 0 10px rgba(221,178,87,.22), 0 12px 40px rgba(0,0,0,.5); } }
 @media (prefers-reduced-motion: no-preference) { .opening { animation: glow 2.4s ease-in-out infinite; } }
 
-.hero .phone-big { display: block; margin-top: 30px; font-family: 'Playfair Display'; font-weight: 700;
+.hero .phone-big { display: block; margin-top: 30px; font-family: var(--ff-name); font-weight: 700;
                    font-size: clamp(28px, 6vw, 44px); color: var(--ink); text-decoration: none; }
 .hero .orders { color: var(--muted); margin-top: 2px; }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 24px; }
@@ -103,7 +126,7 @@ a { color: inherit; }
 /* sections */
 section { padding: 56px 0; }
 section + section { border-top: 1px solid rgba(221,178,87,.18); }
-h2 { font-family: 'Cinzel'; font-weight: 700; text-align: center; color: var(--gold);
+h2 { font-family: var(--ff-head); font-weight: 700; text-align: center; color: var(--gold);
      font-size: clamp(28px, 5vw, 42px); letter-spacing: 4px; text-transform: uppercase; }
 .lead { text-align: center; color: var(--muted); margin: 8px auto 30px; max-width: 680px; }
 
@@ -117,22 +140,22 @@ h2 { font-family: 'Cinzel'; font-weight: 700; text-align: center; color: var(--g
 .mpanel + .mpanel { margin-top: 24px; }
 .mhead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px;
          padding-bottom: 14px; margin-bottom: 22px; border-bottom: 2px solid var(--gold-d); }
-.mhead h3 { font-family: 'Cinzel'; font-weight: 900; font-size: clamp(26px, 4.4vw, 40px); letter-spacing: 2px; line-height: 1.1;
+.mhead h3 { font-family: var(--ff-head); font-weight: 900; font-size: clamp(26px, 4.4vw, 40px); letter-spacing: 2px; line-height: 1.1;
             background: var(--goldgrad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.mhead .note { font-family: 'Playfair Display'; font-style: italic; color: var(--muted); font-size: 17px; }
+.mhead .note { font-family: var(--ff-name); font-style: italic; color: var(--muted); font-size: 17px; }
 .sizes { display: flex; flex-wrap: wrap; gap: 10px; }
 .pill { display: inline-flex; align-items: baseline; gap: 6px; background: var(--goldgrad); color: #1a1208; border-radius: 6px;
-        padding: 4px 12px; font-family: 'Playfair Display'; font-weight: 700; font-size: 20px; line-height: 1.3; white-space: nowrap; }
-.pill small { font-family: 'Josefin Sans'; font-weight: 600; font-size: 14px; }
+        padding: 4px 12px; font-family: var(--ff-name); font-weight: 700; font-size: 20px; line-height: 1.3; white-space: nowrap; }
+.pill small { font-family: var(--ff-body); font-weight: 600; font-size: 14px; }
 .mlist { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr)); gap: 20px 36px; }
 .mlist li { display: grid; grid-template-columns: 2.4em 1fr; align-items: baseline; align-content: start; }
-.mlist .no { font-family: 'Playfair Display'; font-style: italic; font-weight: 700; color: var(--gold); font-size: 18px; }
+.mlist .no { font-family: var(--ff-name); font-style: italic; font-weight: 700; color: var(--gold); font-size: 18px; }
 .mlist .row { display: flex; align-items: baseline; gap: 10px; }
-.mlist .nm { font-family: 'Playfair Display'; font-weight: 700; font-size: 21px; line-height: 1.2; color: var(--ink); }
+.mlist .nm { font-family: var(--ff-name); font-weight: 700; font-size: 21px; line-height: 1.2; color: var(--ink); }
 .mlist .dots { flex: 1; min-width: 14px; border-bottom: 2px dotted var(--gold-d); }
 .mlist .pill { font-size: 18px; padding: 1px 10px; }
 .mlist .ds { grid-column: 2; color: var(--muted); font-size: 16px; line-height: 1.4; margin-top: 3px; }
-.msub { font-family: 'Cinzel'; font-weight: 700; color: var(--gold); letter-spacing: 3px; font-size: 22px;
+.msub { font-family: var(--ff-head); font-weight: 700; color: var(--gold); letter-spacing: 3px; font-size: 22px;
         margin: 30px 0 16px; padding-top: 18px; border-top: 1px solid rgba(221,178,87,.35); }
 
 /* image gallery (posters) */
@@ -151,14 +174,14 @@ h2 { font-family: 'Cinzel'; font-weight: 700; text-align: center; color: var(--g
 /* contact */
 .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
 .card { border: 2px solid var(--gold-d); border-radius: 12px; padding: 28px; background: var(--bg2); }
-.card h3 { font-family: 'Playfair Display'; font-size: 24px; color: var(--gold-l); margin: 20px 0 4px; }
+.card h3 { font-family: var(--ff-name); font-size: 24px; color: var(--gold-l); margin: 20px 0 4px; }
 .card h3:first-child { margin-top: 0; }
 .card p, .card a { font-size: 20px; }
 .card .note { font-size: 16px; color: var(--muted); }
 .card .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
 .card .btns .btn { font-size: 17px; padding: 12px 20px; }
 .hours { width: 100%; border-collapse: collapse; font-size: 19px; }
-.hours td { padding: 3px 0; } .hours td:last-child { text-align: right; color: var(--muted); }
+.hours td { padding: 3px 0; } .hours td:last-child { text-align: end; color: var(--muted); }
 .mapimg { display: block; border: 2px solid var(--gold-d); border-radius: 12px; overflow: hidden; background: #fff; }
 .mapcap { color: var(--muted); font-size: 15px; margin-top: 8px; text-align: center; }
 .gmap { margin-top: 28px; border: 2px solid var(--gold-d); border-radius: 12px; overflow: hidden; }
@@ -200,7 +223,7 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
   "currenciesAccepted": "CZK",
   "acceptsReservations": false,
   "hasMenu": "https://orientexpresspizza.eu/#menu",
-  "address": { "@type": "PostalAddress", "streetAddress": "Sokolská 581", "addressLocality": "Hradec Králové", "postalCode": "500 05", "addressRegion": "Královéhradecký kraj", "addressCountry": "CZ" },
+  "address": { "@type": "PostalAddress", "streetAddress": "Nemocnice 590", "addressLocality": "Hradec Králové", "postalCode": "500 03", "addressRegion": "Královéhradecký kraj", "addressCountry": "CZ" },
   "geo": { "@type": "GeoCoordinates", "latitude": 50.200503, "longitude": 15.827516 },
   "hasMap": "https://www.google.com/maps/search/?api=1&query=50.200503%2C15.827516",
   "containedInPlace": { "@type": "Hospital", "name": "Fakultní nemocnice Hradec Králové", "address": "Sokolská 581, 500 05 Hradec Králové" },
@@ -223,8 +246,19 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/">ORIENT EXPRESS</a>
-    <nav><a href="#menu">Menu</a><a href="#akce">Akce</a><a href="#kontakt">Kontakt</a></nav>
+    <a class="brand" href="/" translate="no">ORIENT EXPRESS</a>
+    <div class="tright">
+      <nav><a href="#menu">Menu</a><a href="#akce">Akce</a><a href="#kontakt">Kontakt</a></nav>
+      <!-- Výběr jazyka. Ruská a turecká verze (/ru/, /tr/) se vytvářejí automaticky z této stránky – viz README.md. -->
+      <details class="lang">
+        <summary aria-label="Jazyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span class="lang-cur" translate="no">CS</span></summary>
+        <ul translate="no">
+          <li><a href="/" hreflang="cs" lang="cs" aria-current="page">Čeština <small>CS</small></a></li>
+          <li><a href="/ru/" hreflang="ru" lang="ru">Русский <small>RU</small></a></li>
+          <li><a href="/tr/" hreflang="tr" lang="tr">Türkçe <small>TR</small></a></li>
+        </ul>
+      </details>
+    </div>
   </div>
 </header>
 
@@ -234,7 +268,7 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
       <h1>ORIENT<br>EXPRESS<span class="vh"> Pizza – pizzerie Hradec Králové</span></h1>
       <div class="divider"><i></i><b></b><i></i></div>
       <div class="sub">PIZZA · BURGER · KÖFTE</div>
-      <p class="where">Pizzerie v areálu Fakultní nemocnice Hradec Králové · Sokolská 581</p>
+      <p class="where">Pizzerie v areálu Fakultní nemocnice Hradec Králové · Nemocnice 590</p>
 
       <div class="opening js-opening">
         <div class="tag">Velké otevření</div>
@@ -267,12 +301,12 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
       <h2>Menu</h2>
       <p class="lead">Pizza 34 cm a 40 cm · burgery · köfte &amp; extra · přílohy · italské panini</p>
       <nav class="menu-nav" aria-label="Části menu">
-        <a href="#pizza-classic">Pizza Classic</a><a href="#pizza-premium">Pizza Premium</a><a href="#burgery">Burgery</a><a href="#kofte">Köfte &amp; Extra</a><a href="#panini">Panini</a>
+        <a href="#pizza-classic" lang="en">Pizza Classic</a><a href="#pizza-premium" lang="en">Pizza Premium</a><a href="#burgery">Burgery</a><a href="#kofte">Köfte &amp; Extra</a><a href="#panini">Panini</a>
       </nav>
 
       <div class="mpanel" id="pizza-classic">
         <div class="mhead">
-          <h3>Pizza Classic</h3>
+          <h3 lang="en">Pizza Classic</h3>
           <div class="sizes"><span class="pill"><small>ø 34 cm</small> 230 Kč</span><span class="pill"><small>ø 40 cm</small> 250 Kč</span></div>
         </div>
         <ul class="mlist">
@@ -293,7 +327,7 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 
       <div class="mpanel" id="pizza-premium">
         <div class="mhead">
-          <h3>Pizza Premium</h3>
+          <h3 lang="en">Pizza Premium</h3>
           <div class="sizes"><span class="pill"><small>ø 34 cm</small> 260 Kč</span><span class="pill"><small>ø 40 cm</small> 280 Kč</span></div>
         </div>
         <ul class="mlist">
@@ -406,15 +440,15 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
             <a class="btn btn-line" href="https://wa.me/420724252217?text=Dobr%C3%BD%20den%2C%20chci%20objednat%3A%20">Napsat na WhatsApp</a>
           </div>
           <h3>Adresa</h3>
-          <p>Sokolská 581<br>500 05 Hradec Králové – Nový Hradec Králové</p>
+          <p>Nemocnice 590<br>500 03 Hradec Králové – Nový Hradec Králové</p>
           <p class="note">V areálu Fakultní nemocnice u budovy č. 24, nedaleko hlavního vchodu ze Sokolské – viz plán.</p>
           <div class="btns">
             <a class="btn btn-gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=50.200503%2C15.827516">Navigovat</a>
           </div>
           <h3>Otevírací doba</h3>
           <table class="hours">
-            <tr><td>Po – Pá</td><td>06:00 – 18:00</td></tr>
-            <tr><td>So</td><td>06:00 – 18:00</td></tr>
+            <tr><td>Po – Pá</td><td><span dir="ltr">06:00 – 18:00</span></td></tr>
+            <tr><td>So</td><td><span dir="ltr">06:00 – 18:00</span></td></tr>
             <tr><td>Ne</td><td>Zavřeno</td></tr>
           </table>
         </div>
@@ -445,8 +479,17 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
 </div>
 
 <script>
-// Odpočet do otevření; po 7. 12. 2026 se upoutávka sama skryje.
+// Odpočet do otevření; po 7. 12. 2026 se upoutávka sama skryje. Texty pro všechny jazykové verze jsou tady.
 (function () {
+  var T = {
+    cs: { today: '<b>Dnes otevíráme!</b> Přijďte ochutnat.', left: 'Zbývá už jen <b>{n}</b>',
+          days: { one: '{n} den', few: '{n} dny', other: '{n} dní' } },
+    ru: { today: '<b>Сегодня открываемся!</b> Приходите попробовать.', left: 'До открытия: <b>{n}</b>',
+          days: { one: '{n} день', few: '{n} дня', many: '{n} дней', other: '{n} дня' } },
+    tr: { today: '<b>Bugün açılıyoruz!</b> Gelin, tadına bakın.', left: 'Açılışa <b>{n}</b> kaldı',
+          days: { other: '{n} gün' } }
+  };
+  var lang = document.documentElement.lang, t = T[lang] || T.cs;
   var open = new Date(2026, 11, 7, 0, 0, 0);       // 7. prosince 2026 (měsíce se počítají od 0)
   var end = new Date(2026, 11, 8, 0, 0, 0);
   var now = new Date();
@@ -455,10 +498,20 @@ footer { text-align: center; padding: 28px 0 90px; color: var(--muted); font-siz
     return;
   }
   var el = document.getElementById('countdown');
-  if (now >= open) { el.innerHTML = '<b>Dnes otevíráme!</b> Přijďte ochutnat.'; return; }
+  if (now >= open) { el.innerHTML = t.today; return; }
   var days = Math.ceil((open - now) / 86400000);
-  var word = days === 1 ? 'den' : (days >= 2 && days <= 4 ? 'dny' : 'dní');
-  el.innerHTML = 'Zbývá už jen <b>' + days + ' ' + word + '</b>';
+  var form = 'other';
+  try { form = new Intl.PluralRules(lang).select(days); } catch (e) {}
+  var word = (t.days[form] || t.days.other).replace('{n}', days);
+  el.innerHTML = t.left.replace('{n}', word);
+})();
+
+// Výběr jazyka: zavřít po kliknutí mimo nabídku nebo klávesou Esc.
+(function () {
+  var d = document.querySelector('.lang');
+  if (!d) return;
+  document.addEventListener('click', function (e) { if (d.open && !d.contains(e.target)) d.open = false; });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') d.open = false; });
 })();
 </script>
 </body>

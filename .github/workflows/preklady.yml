@@ -1,0 +1,26 @@
+# Po každé změně index.html, překladů nebo obrázků znovu vytvoří ruskou a tureckou verzi stránky (ru/, tr/).
+# Regenerates the localized pages whenever the Czech page or a dictionary changes, and commits them.
+name: Jazykové verze
+on:
+  push:
+    branches: [main]
+    paths: ['index.html', 'zdroje/preklady/**', 'obrazky/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: preklady
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 zdroje/preklady/prelozit.py
+      - name: Commit regenerated pages
+        run: |
+          if [ -n "$(git status --porcelain ru tr)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add ru tr
+            git commit -m "Regenerate ru/ and tr/ from index.html"
+            git push
+          fi

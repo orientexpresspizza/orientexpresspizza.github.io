@@ -2,7 +2,6 @@
 import os
 F = os.environ.get("FONTS_DIR", os.path.abspath("fonts"))   # needs Cinzel[wght].ttf and Arimo[wght].ttf
 RED = "rgb(67.498779%, 16.499329%, 18.399048%)"      # exact red of the map's arrows and labels (#AC2A2F)
-svg = open("./mapa.svg", encoding="utf-8").read()
 
 # 1) red ring around the Občerstvení sign + the building below it
 CX, CY, RX, RY = 280.8, 185.6, 23, 11   # oval around the Občerstvení sign + the building next to it
@@ -16,7 +15,9 @@ TX, TY = 319.5, 169      # JSME TADY position (baseline start)                  
 # 3) gold label to the right of the arrow
 x0, y0, w, h = 309, 182, 156, 38
 
-label = f'''
+def oe_label(here='JSME TADY'):
+    """SVG group with the ring, arrow, the 'we are here' text and the gold label (here = translated text)."""
+    return f'''
 <g id="orient-express">
   <defs>
     <linearGradient id="oeGold" x1="0" y1="0" x2="0" y2="1">
@@ -32,7 +33,7 @@ label = f'''
     <path d="{ARROW}" fill="{RED}" stroke="#fff" stroke-width="1" stroke-linejoin="miter" fill-rule="evenodd"/>
   </g>
   <text x="{TX}" y="{TY}" text-anchor="start" font-family="Arimo" font-weight="700" font-size="8.2"
-        fill="{RED}">JSME TADY</text>
+        fill="{RED}">{here}</text>
 
   <!-- gold brand label -->
   <rect x="{x0+1.6}" y="{y0+2.2}" width="{w}" height="{h}" rx="4" fill="#000" opacity=".35"/>
@@ -43,11 +44,16 @@ label = f'''
   <text x="{x0+w/2}" y="{y0+32}" text-anchor="middle" font-family="Cinzel" font-weight="700" font-size="9.8"
         letter-spacing="3.6" fill="#f5e9cc">PIZZA</text>
 </g>'''
-svg = svg.replace("</svg>", label + "\n</svg>")
-open("./mapa_oe.svg", "w", encoding="utf-8").write(svg)
-html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face {{ font-family: 'Cinzel'; src: url('file://{F}/Cinzel[wght].ttf'); font-weight: 400 900; }}
-@font-face {{ font-family: 'Arimo'; src: url('file://{F}/Arimo[wght].ttf'); font-weight: 400 700; }}
-html,body{{margin:0;background:#fff}} svg{{display:block;width:592px;height:894.457px}}</style></head>
-<body>{svg[svg.index("<svg"):]}</body></html>'''
-open("./mapa_oe.html", "w", encoding="utf-8").write(html)
+
+
+if __name__ == '__main__':
+  label = oe_label()
+  svg = open("./mapa.svg", encoding="utf-8").read()
+  svg = svg.replace("</svg>", label + "\n</svg>")
+  open("./mapa_oe.svg", "w", encoding="utf-8").write(svg)
+  html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
+  @font-face {{ font-family: 'Cinzel'; src: url('file://{F}/Cinzel[wght].ttf'); font-weight: 400 900; }}
+  @font-face {{ font-family: 'Arimo'; src: url('file://{F}/Arimo[wght].ttf'); font-weight: 400 700; }}
+  html,body{{margin:0;background:#fff}} svg{{display:block;width:592px;height:894.457px}}</style></head>
+  <body>{svg[svg.index("<svg"):]}</body></html>'''
+  open("./mapa_oe.html", "w", encoding="utf-8").write(html)
